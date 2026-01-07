@@ -1,7 +1,7 @@
 # GitHub Actions Demo
 
 > [!NOTE]
-> See ./app/README.md for a more specific readme telling you how the code in this repo works
+> See ./app/README.md for a more specific readme telling you how the code in this repo works. This document itself is more of an instruction manual for the skill-a-thon.
 
 For an interactive experience, this repo is set up so that you can fork it to your personal GitHub accounts and practice pushing, opening pull-requests, and otherwise using the GitHub Action Workflows. I'll demonstrate how things work while I present. Maybe I'll also add in-depth explanations to the repo itself, if I have time.
 
