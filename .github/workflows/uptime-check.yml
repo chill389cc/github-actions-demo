@@ -1,0 +1,30 @@
+name: Uptime Check
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '*/5 * * * *'  # Every 5 minutes
+
+jobs:
+  check:
+    name: Check Website Status
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ping website
+        id: ping
+        run: |
+          if curl --fail --silent --head --max-time 10 https://wikipedia.org > /dev/null 2>&1; then
+            echo "status=up" >> $GITHUB_OUTPUT
+            echo "Website is up!"
+          else
+            echo "status=down" >> $GITHUB_OUTPUT
+            echo "Website is down!"
+          fi
+
+      - name: Send Discord notification
+        if: steps.ping.outputs.status == 'down'
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d "{\"content\": \"🚨 **Website Alert** 🚨\n\nWebsite \`https://wikipedia.org\` is currently **DOWN**.\n\nTime: $(date -u '+%Y-%m-%d %H:%M:%S UTC')\nWorkflow: ${{ github.workflow }}\nRun: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            ${{ secrets.DISCORD_WEBHOOK_URL }}
