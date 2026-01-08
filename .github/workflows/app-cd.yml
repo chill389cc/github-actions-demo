@@ -5,10 +5,10 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - 'README.md'
+      - '**/*.md'
       - '.gitignore'
-      - 'docker-compose.yml'
-      - '.github/workflows/ci.yml'
+      - '.github/workflows/app-ci.yml'
+      - '.github/workflows/uptime-check.yml'
 
 env:
   node_version: "22.x"
@@ -38,6 +38,24 @@ jobs:
         working-directory: app
         run: npm run build
 
+# If you implement the Docker Publish step (see below), you can probably remove these next two steps
+# These are just here to have a deploy-esque thing happen that doesn't require credentials
+      - name: Create deployment package
+        run: |
+          cd app
+          zip -r ../app-deployment.zip dist/ package.json package-lock.json
+          cd ..
+          echo "Created mock deployment package: app-deployment.zip"
+      - name: Upload deployment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-deployment
+          path: app-deployment.zip
+          retention-days: 7
+
+# Uncomment this step if you want to try uploading the app to Docker Hub
+# However, you will need to set up a Docker Hub account and repository first
+# TODO RE_COMMENT THESE LINES BELOW
   build_and_deploy:
     name: Push to Docker Hub
     runs-on: ubuntu-latest
@@ -45,16 +63,19 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v4
-
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
+        # Add these secrets to your github repository if you want to try this step
+        # https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
         with:
+        # Change these two things if you want to try this step
+        # These are values for your Docker Hub Repo/Account, not GitHub
           images: YOUR_ACCOUNT_HERE/YOUR_IMAGE_ID_HERE
       - name: Build and push Docker image
         uses: docker/build-push-action@v6

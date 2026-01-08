@@ -1,7 +1,7 @@
 # A Website
 This is a website. It uses a [Fastify](https://fastify.dev/) backend, running on [Node.js](https://nodejs.org/en), on the backend to serve raw HTML.
 
-> [!NOTE]  
+> [!TIP]  
 > The BYU Office of IT and Lucid Software use Fastify in one way or another, alongside other big names like Mercedes. Industry leaders like the Linux Foundation recommend Fastify for Node.js web servers.
 
 ## Setup
