@@ -1,4 +1,7 @@
 # A Website
+> [!WARNING]
+> For the purposes of the skill-a-thon, you don't need to know anything about how the code in this repo works except for what is in the `.github/workflows` folder. This information is here for those who are curious.
+
 This is a website. It uses a [Fastify](https://fastify.dev/) backend, running on [Node.js](https://nodejs.org/en), on the backend to serve raw HTML.
 
 > [!TIP]  
