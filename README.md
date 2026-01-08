@@ -6,7 +6,7 @@
 For an interactive experience, this repo is set up so that you can copy it to your personal GitHub accounts and practice pushing, opening pull-requests, and otherwise using the GitHub Action Workflows. I'll demonstrate how things work while I present. Maybe I'll also add in-depth explanations to the repo itself, if I have time. Check out the content we'll be looking at during the skill-a-thon [here](https://lucid.app/lucidspark/e5373e21-3f84-4481-836f-121e90e20afd/edit?viewport_loc=-5843%2C-3242%2C12367%2C6140%2C0_0&invitationId=inv_0d6f6129-618d-4398-b732-67560c6b8744).
 
 # Pre-requisites
-This section contains information and preparation steps for you to complete before the Jan 22 skill-a-thon.
+This section contains information and preparation steps for you to complete before the Jan 22 skill-a-thon. These steps are for the GitHub Action training, not the Chrome DevTools Training. Prep for Chrome DevTools will be provided elsewhere.
 
 ## Have a GitHub Account
 You probably already have a GitHub account for your school assignments or personal projects. If you don't, **you'll want to make one now if you want to try running actions yourself**.
